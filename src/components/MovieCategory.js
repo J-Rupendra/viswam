@@ -1,18 +1,13 @@
 import MovieCard from './MovieCard'
 import { useSelector } from 'react-redux'
 import useFetchMovieListCategory from '../utils/custom_hooks/useFetchMovieListCategory'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import Shimmer from './Shimmer'
 
 const MovieCategory = ({category}) => {
     const categoryMoviesList = useSelector(store => store.movie[category.sliceParam])
     useFetchMovieListCategory(category)
-    const navigateTo = useNavigate()
 
-
-
-    if(!categoryMoviesList.length){
-        return
-    }
 
   return (
     <div className="my-4">
@@ -23,9 +18,10 @@ const MovieCategory = ({category}) => {
       </div>
       <div className="flex overflow-x-hidden">
         <div className="mx-2 my-4 flex gap-3">
-          {categoryMoviesList.map((_) => (
-            <MovieCard key={_.id} movieDetails={_} />
-          ))}
+          { categoryMoviesList.length>0 ? categoryMoviesList.map((_, index) => (
+            <MovieCard key={_.id + category.title + index} movieDetails={_} />
+          )): <Shimmer count={9} />}
+          
         </div>
       </div>
     </div>

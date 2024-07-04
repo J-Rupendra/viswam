@@ -1,11 +1,13 @@
 import { signOut } from "firebase/auth"
 import { useSelector } from "react-redux"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate  } from "react-router-dom"
 import { firebaseAuth } from "../utils/firebase"
+import { useState } from "react"
 
 const Header = () => {
     const isUserLoggedIn = !!useSelector(store => store.user.userData)
     const navigateTo = useNavigate()
+
 
     function firebaseSignOut(){
         signOut(firebaseAuth).then(onfulfilled=>{
@@ -17,6 +19,10 @@ const Header = () => {
 
     function handleLogoClick() {
       navigateTo(isUserLoggedIn ? "/browse" : "/");
+    }
+    
+    function handleNavigation( keyword ){
+      navigateTo("/"+keyword)
     }
 
     
@@ -32,15 +38,19 @@ const Header = () => {
         />
         {isUserLoggedIn ? (
           <>
-            <div className="flex cursor-pointer" onClick={firebaseSignOut}>
-            <button className="border border-white text-white px-4 my-3 rounded-lg mx-2 hover:border-teal-500 hover:text-teal-500" >Search</button>
-            <button className="border border-white text-white px-4 my-3 rounded-lg mx-4 hover:border-teal-500 hover:text-teal-500" >Short Videos</button>
+            <div className="flex">
+            {/* <button className="border border-white text-white px-4 my-3 rounded-lg mx-2 hover:border-teal-500 hover:text-teal-500 hover:scale-105 transition-all" onClick={handleLogoClick} >Browse</button> */}
+            <button className="border border-white text-white px-4 my-3 rounded-lg mx-2 hover:border-teal-500 hover:text-teal-500 hover:scale-105 transition-all" onClick={()=>handleNavigation("search")} >Search</button>
+            <button className="border border-white text-white px-4 my-3 rounded-lg mx-4 hover:border-teal-500 hover:text-teal-500 hover:scale-105 transition-all " onClick={()=>handleNavigation("shorts")} >Short Videos</button>
+            <div className="flex hover:scale-105 transition-all cursor-pointer" >
               <img
                 className="w-14"
                 alt="logo"
                 src="/assets/default_user_photo.jpg"
+                onClick={firebaseSignOut}
               />
-              <span className="text-white my-auto ml-2 text-xl  hover:text-teal-500">sign out</span>
+              <span className="text-white my-auto ml-2 text-xl " onClick={firebaseSignOut}>sign out</span>
+            </div>
             </div>
           </>
         ) : (

@@ -9,27 +9,30 @@ const movieListSlice = createSlice({
         topRated: []
     },
     reducers:{
-        addNowPlayingMovieLIst: (state, action)=>{
-            state.nowPlaying = action.payload
+        addNowPlayingMovieList: (state, action)=>{
+            state.nowPlaying = [...state.nowPlaying,...action.payload]
         },
         addPopularMovieList: (state, action)=>{
-            state.popular = action.payload
+            state.popular = [ ...state.popular,...action.payload]
         },
         addUpcomingMovieList: (state, action)=>{
-            state.upcoming = action.payload
+            state.upcoming = [ ...state.upcoming,...action.payload]
         },
         addTopRatedMovieList: (state, action)=>{
-            state.topRated = action.payload
+            state.topRated = [ ...state.topRated,...action.payload]
         },
         clearMovieData: (state)=>{
             state.nowPlaying = []
             state.popular = []
             state.upcoming = []
             state.topRated = []
+        },
+        getMovieListFor: (state, action)=>{
+            state[action.payload] = [...state[action.payload]]
         }
     }
 })
 
-export const {addNowPlayingMovieLIst,addPopularMovieList,addTopRatedMovieList,addUpcomingMovieList,clearMovieData} = movieListSlice.actions
+export const {addNowPlayingMovieList,addPopularMovieList,addTopRatedMovieList,addUpcomingMovieList,clearMovieData, getMovieListFor} = movieListSlice.actions
 
 export default movieListSlice.reducer

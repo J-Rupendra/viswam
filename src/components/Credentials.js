@@ -85,8 +85,31 @@ const Credentials = () => {
         <input ref={password} className='w-3/4 mt-4 p-3 bg-gray-600 text-white rounded' placeholder='Password' type='password' />
         {errorMessage && <p className='text-red-600 mt-2' >{errorMessage}</p> }
         <button type='submit' className='w-3/4 mt-4 bg-teal-400 py-1 text-2xl font-semibold text-black rounded' >{ showLoading ? 'Loading...' : ('Sign' + (!showSigninForm?' Up':' In'))}</button>
-        <p className='text-white mt-8' > {showSigninForm?'Already a User':'New User'}?  <span className='underline ml-2 cursor-pointer' onClick={()=>{setShowSigninForm(!showSigninForm)}}  > Sign {showSigninForm?' Up':' In'} </span> </p>
+        <p className='text-white mt-6' > {showSigninForm?'Already a User':'New User'}?  <span className='underline ml-2 cursor-pointer' onClick={()=>{setShowSigninForm(!showSigninForm)}}  > Sign {showSigninForm?' Up':' In'} </span> </p>
+        <div className='bg-gray-700 text-left w-3/4 p-2 mt-8  rounded ' >
+        { showSigninForm ? 
+          <>
+            <p className='text-white' >Guest login details</p>
+            <ul className='px-8 text-gray-300 list-disc' >
+              <li>Thanksforlogin@viswam.com</li>
+              <li>Happy2serve</li>
+            </ul>
+          
+          </>
+          :
+          <>
+            <p className='text-white' >Password must contain</p>
+            <ul className='px-8 text-gray-300 list-disc' >
+              <li>Minimum length of 8 characters</li>
+              <li>At least one capital alphabet</li>
+              <li>At least one small alphabet</li>
+              <li>At least one digit</li>
+            </ul>
+          </>
+        }
+        </div>
       </form>
+
     </div>
   )
 }

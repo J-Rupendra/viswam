@@ -6,6 +6,9 @@ import AppLayout from './components/AppLayout';
 import Browse from './components/Browse';
 import MovieListContainer from './components/MovieListContainer';
 import MovieDetailsContainer from './components/MovieDetailsContainer';
+import SearchMovies from './components/SearchMovies';
+import ShortsContainer from './components/ShortsContainer';
+
 
 function App() {
 
@@ -39,6 +42,14 @@ function App() {
         {
           path: '/moviePreview/:movieId',
           element: <MovieDetailsContainer />
+        },
+        {
+          path: '/search',
+          element: <SearchMovies />
+        },
+        {
+          path: '/shorts',
+          element: <ShortsContainer />
         }
 
       ]

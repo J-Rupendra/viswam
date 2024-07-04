@@ -13,10 +13,10 @@ const Browse = () => {
 
   return (
     <div className='w-full h-full p-6' >
-      <MovieCategory category={MOVIE_CATEGORY_LABELS.popular} />
       <MovieCategory category={MOVIE_CATEGORY_LABELS.nowPlaying} />
-      <MovieCategory category={MOVIE_CATEGORY_LABELS.upcoming} />
       <MovieCategory category={MOVIE_CATEGORY_LABELS.topRated} />
+      <MovieCategory category={MOVIE_CATEGORY_LABELS.popular} />
+      <MovieCategory category={MOVIE_CATEGORY_LABELS.upcoming} />
     </div>
   )
 }
