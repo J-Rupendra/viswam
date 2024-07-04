@@ -7,10 +7,13 @@ import Browse from './components/Browse';
 import MovieListContainer from './components/MovieListContainer';
 import MovieDetailsContainer from './components/MovieDetailsContainer';
 import SearchMovies from './components/SearchMovies';
-import ShortsContainer from './components/ShortsContainer';
+import { Suspense, lazy } from 'react';
+import ShimmerShorts from './components/ShimmerShorts';
 
 
 function App() {
+
+  const ShortsContainer = lazy(()=>import("./components/ShortsContainer"))
 
   const appRoutes = createBrowserRouter([
     {
@@ -49,7 +52,7 @@ function App() {
         },
         {
           path: '/shorts',
-          element: <ShortsContainer />
+          element:  <Suspense fallback={<ShimmerShorts />} > <ShortsContainer /> </Suspense>
         }
 
       ]

@@ -17,7 +17,12 @@
   - install firebase cli
   - firebase login
   - firebase init
-  - firebase deploy
+      - use existing project
+      - configure deployment and optionally for github deploys
+      - use build folder for reference not public folder
+      - don't overwrite index file anywhere
+  - firebase deploy 
+      - before deploying do npm run build for updated production ready build
 
 
 - our app deployed at https://viswam-370e7.web.app

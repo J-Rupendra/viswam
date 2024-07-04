@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import useCustomRouteGaurd from '../utils/custom_hooks/useCustomRouteGaurd'
+import ShimmerShorts from './ShimmerShorts'
 
 const ShortsContainer = () => {
     useCustomRouteGaurd()
@@ -71,7 +72,7 @@ const ShortsContainer = () => {
         <button className={"bg-slate-300 font-semibold rounded-full py-4 px-10 text-black cursor-pointer hover:scale-110 transition-all" + (shortIndexToPlay===listOfShortVideos.current.length-1?" pointer-events-none bg-slate-500 text-slate-400 ":"") } onClick={()=>handleShortNavigateClick(1)}  >Next</button>
       </div>
     </div>
-  );
+  )
 }
 
 export default ShortsContainer
