@@ -62,7 +62,7 @@ const Credentials = () => {
         })
         .catch(err => {
           setShowLoading(false);
-          setErrorMessage(err.message)
+          setErrorMessage("Invalid Credentials")
         });
     }
 

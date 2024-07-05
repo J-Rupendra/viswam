@@ -4,6 +4,7 @@ import { TMDP_API_OPTIONS } from '../utils/constants'
 import { addDebounce } from '../utils/utilityFunctions'
 import MovieCard from './MovieCard'
 import Shimmer from './Shimmer'
+import useDebounce from '../utils/custom_hooks/useDebounce'
 
 const SearchMovies = () => {
     useCustomRouteGaurd()
@@ -12,9 +13,10 @@ const SearchMovies = () => {
     const [searchedMovies, setSearchedMovies] = useState([])
     const [showLoading, setShowLoading] = useState(false)
     const searchInputRef = useRef(null)
-    const debouncedFetchSuggestions = addDebounce(fetchSuggestions,300)
+    const debouncedFetchSuggestions = useDebounce(fetchSuggestions,500)
 
     async function fetchSuggestions(searchKeyword){
+      console.log("called");
         const response = await fetch(`https://api.themoviedb.org/3/search/keyword?query=${searchKeyword}&page=1`, TMDP_API_OPTIONS)
         const respJson = await response.json()
         setSearchKeywordResults(respJson.results)

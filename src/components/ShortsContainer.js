@@ -1,43 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react'
 import useCustomRouteGaurd from '../utils/custom_hooks/useCustomRouteGaurd'
-import ShimmerShorts from './ShimmerShorts'
+import useThrottling from '../utils/custom_hooks/useThrottling'
+import { SHORT_VIDEOS_ID_LIST } from '../utils/constants'
 
 const ShortsContainer = () => {
     useCustomRouteGaurd()
     
-    const listOfShortVideos = useRef([
-        "bmscP5EI4Bo",
-        "GcdtdwJD6H0",
-        "KubJQ9a8XZA",
-        "uFtnh3yH45s",
-        "tq1vcm_6xrU",
-        "FtgLCf91wMM",
-        "S4SuqK6JTrY",
-        "o0A4o4E5UPs",
-        "jEAkpn_IdOs",
-        "ySfGxHwGyDk",
-        "Kp-qyruJ3js",
-        "c1OBX0peEb0",
-        "WhBXHIrCSSo",
-        "BLnsZIeEDJI",
-        "HEL-eYCdCac",
-        "spLARRUIDbE",
-        "Tkl0GqpQZ3s",
-        "A3XQOGdKcF8",
-        "OuY4DbVDLgQ",
-        "Je22_wqFjig",
-        "oV43sck10nQ",
-        "HZ5xX4OTm48",
-        "mgq-xEMsiI8"
-    ]) 
+    const listOfShortVideos = useRef(SHORT_VIDEOS_ID_LIST) 
     const [shortIndexToPlay, setShortIndexToPlay] = useState(-1)
+    const throttledShortNavigateClick = useThrottling(shortNavigateClick, 1200)  // the avg time taken to load a youtube short is 1200ms
     useEffect(()=>{
         shuffleShorts()
         setShortIndexToPlay(0)
     },[])
 
 
-    function handleShortNavigateClick(flag){
+    function shortNavigateClick(flag){
         const indexToBeUpdated = shortIndexToPlay+flag
         setShortIndexToPlay(indexToBeUpdated<=0?0:indexToBeUpdated)
     }
@@ -54,7 +32,7 @@ const ShortsContainer = () => {
   return (
     <div className='grid grid-cols-3 gap-7 ' >
         <div className='my-auto mx-auto' >
-        <button className={"bg-slate-300 font-semibold rounded-full py-4 px-10 text-black cursor-pointer hover:scale-110 transition-all " + (shortIndexToPlay===0?" pointer-events-none bg-slate-500 text-slate-400 ":"") } onClick={() => handleShortNavigateClick(-1)} >Prev</button>
+        <button className={"bg-slate-300 font-semibold rounded-full py-4 px-10 text-black cursor-pointer hover:scale-110 transition-all " + (shortIndexToPlay===0?" pointer-events-none bg-slate-500 text-slate-400 ":"") } onClick={() => throttledShortNavigateClick(-1)} >Prev</button>
       </div>
       <div className='py-2 ' >
         { shortIndexToPlay >=0 && <iframe
@@ -69,7 +47,7 @@ const ShortsContainer = () => {
         ></iframe>}
       </div>
       <div className='my-auto mx-auto' >
-        <button className={"bg-slate-300 font-semibold rounded-full py-4 px-10 text-black cursor-pointer hover:scale-110 transition-all" + (shortIndexToPlay===listOfShortVideos.current.length-1?" pointer-events-none bg-slate-500 text-slate-400 ":"") } onClick={()=>handleShortNavigateClick(1)}  >Next</button>
+        <button className={"bg-slate-300 font-semibold rounded-full py-4 px-10 text-black cursor-pointer hover:scale-110 transition-all" + (shortIndexToPlay===listOfShortVideos.current.length-1?" pointer-events-none bg-slate-500 text-slate-400 ":"") } onClick={()=>throttledShortNavigateClick(1)}  >Next</button>
       </div>
     </div>
   )

@@ -46,3 +46,9 @@ export const MOVIE_CATEGORY_LABELS = {
     routeParam: "topRated"
   },
 }
+
+export const SHORT_VIDEOS_ID_LIST = ["bmscP5EI4Bo", "GcdtdwJD6H0", "KubJQ9a8XZA", "uFtnh3yH45s", 
+  "tq1vcm_6xrU", "FtgLCf91wMM", "S4SuqK6JTrY", "o0A4o4E5UPs", "jEAkpn_IdOs", "ySfGxHwGyDk", "Kp-qyruJ3js", 
+  "c1OBX0peEb0", "WhBXHIrCSSo", "BLnsZIeEDJI", "HEL-eYCdCac",  "spLARRUIDbE", "Tkl0GqpQZ3s", "A3XQOGdKcF8", 
+  "OuY4DbVDLgQ", "Je22_wqFjig", "oV43sck10nQ", "HZ5xX4OTm48", "mgq-xEMsiI8", "OUAC1A9-UlE", "8sJ-F0HHe2Q", 
+  "7ugonbmoKWY", "NtWALD10Ofw", "gv84I-cNtk0", "Y73PjqQr_K4", "fs5Hv8ABjiY", "Qwlln2X66MY"];
