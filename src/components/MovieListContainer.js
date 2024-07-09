@@ -59,8 +59,8 @@ const MovieListContainer = () => {
         ))}
         {displayingPageNo.current < 6 && (
           <>
+            <Shimmer count={3} />
             <span ref={elementToBeObserved}></span>
-            <Shimmer count={10} />
           </>
         )}
       </div>

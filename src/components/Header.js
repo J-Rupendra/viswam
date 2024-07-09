@@ -29,7 +29,7 @@ const Header = () => {
 
 
     return (
-      <div className=" flex w-full justify-between bg-gradient-to-t from-black to-gray-600 px-4 py-2 shadow-lg">
+      <div className=" flex w-full justify-between bg-gradient-to-t from-black to-gray-600 px-4 py-2 shadow-lg sticky top-0 z-50">
         <img
           className="w-14 cursor-pointer"
           onClick={handleLogoClick}
@@ -40,6 +40,7 @@ const Header = () => {
           <>
             <div className="flex">
             {/* <button className="border border-white text-white px-4 my-3 rounded-lg mx-2 hover:border-teal-500 hover:text-teal-500 hover:scale-105 transition-all" onClick={handleLogoClick} >Browse</button> */}
+            <button className="border border-white text-white px-4 my-3 rounded-lg mx-2 hover:border-teal-500 hover:text-teal-500 hover:scale-105 transition-all" onClick={()=>handleNavigation("browse")} >Home</button>
             <button className="border border-white text-white px-4 my-3 rounded-lg mx-2 hover:border-teal-500 hover:text-teal-500 hover:scale-105 transition-all" onClick={()=>handleNavigation("search")} >Search</button>
             <button className="border border-white text-white px-4 my-3 rounded-lg mx-4 hover:border-teal-500 hover:text-teal-500 hover:scale-105 transition-all " onClick={()=>handleNavigation("shorts")} >Short Videos</button>
             <div className="flex hover:scale-105 transition-all cursor-pointer" >
