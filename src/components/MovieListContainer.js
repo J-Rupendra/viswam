@@ -57,13 +57,15 @@ const MovieListContainer = () => {
         {categoryMoviesList.map((_, index) => (
           <MovieCard key={_.id + "_" + displayingPageNo.current+"_"+index} movieDetails={_} />
         ))}
+      </div>
         {displayingPageNo.current < 6 && (
           <>
-            <Shimmer count={3} />
-            <span ref={elementToBeObserved}></span>
+          <span ref={elementToBeObserved}></span>
+          <div className='flex flex-wrap' >
+            <Shimmer count={6} />
+          </div>
           </>
         )}
-      </div>
     </div>
   );
 }
